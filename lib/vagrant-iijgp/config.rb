@@ -26,6 +26,24 @@ module VagrantPlugins
         @virtual_machine_type = 'V10' if @virtual_machine_type == UNSET_VALUE
         @os = 'CentOS6_64_U' if @os == UNSET_VALUE
       end
+
+      def validate
+        errors = _detected_errors
+
+        unless @access_key
+          errors << I18n.t("vagrant_iijgp.config.access_key_is_required")
+        end
+
+        unless @secret_key
+          errors << I18n.t("vagrant_iijgp.config.secret_key_is_required")
+        end
+
+        if @gp_service_code.nil? or @gp_service_code == UNSET_VALUE
+          errors << I18n.t("vagrant_iijgp.config.gp_service_code_is_required")
+        end
+
+        { "IIJ GP Provider" => errors }
+      end
     end
   end
 end
