@@ -15,7 +15,7 @@ module VagrantPlugins
         Config
       end
 
-      config(:iijgp) do
+      provider(:iijgp, :parallel => true) do
         setup_logging
         setup_i18n
 

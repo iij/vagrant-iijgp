@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = VagrantPlugins::ProviderIijGp::VERSION
   spec.authors       = ["Takahiro HIMURA"]
   spec.email         = ["taka@himura.jp"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Vagrant plugin for IIJ GIO Hosting Package service}
+  spec.summary       = %q{Vagrant plugin for IIJ GIO Hosting Package service}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -18,8 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "faraday"
-  spec.add_runtime_dependency "faraday_middleware"
+  spec.add_runtime_dependency "iijapi"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"

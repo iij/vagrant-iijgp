@@ -4,8 +4,6 @@ module VagrantPlugins
       def initialize(machine)
         @logger = Log4r::Logger.new("")
         @machine = machine
-
-        machine_id_changed
       end
       attr_reader :machine
 
@@ -22,10 +20,6 @@ module VagrantPlugins
         end
       end
 
-      def machine_id_changed
-        # do nothing
-      end
-
       # @return [Hash] SSH information. For the structure of this hash
       #   read the accompanying documentation for this method.
       def ssh_info
@@ -35,18 +29,17 @@ module VagrantPlugins
 
       # @return [MachineState]
       def state
-        env = @machine.action('read_status')
+        env = @machine.action('read_state')
 
-        status = env[:machine_status].downcase
+        state = env[:machine_state]
 
         # Translate into short/long descriptions
-        short = I18n.t("vagrant_iijgio.status.#{status}.short")
-        long = I18n.t("vagrant_iijgio.status.#{status}.long")
+        short = I18n.t("vagrant_iijgp.state.#{state}.short")
+        long = I18n.t("vagrant_iijgp.state.#{state}.long")
 
         # Return the MachineState object
-        Vagrant::MachineState.new(status, short, long)
+        Vagrant::MachineState.new(state, short, long)
       end
     end
   end
 end
-

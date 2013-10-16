@@ -1,6 +1,8 @@
 module VagrantPlugins
   module ProviderIijGp
     class Config < Vagrant.plugin("2", :config)
+      attr_accessor :endpoint
+
       attr_accessor :access_key
       attr_accessor :secret_key
 
@@ -10,7 +12,10 @@ module VagrantPlugins
       attr_accessor :virtual_machine_type
       attr_accessor :os
 
+      attr_accessor :label
+
       def initialize
+        @endpoint = UNSET_VALUE
         @access_key = UNSET_VALUE
         @secret_key = UNSET_VALUE
         @gp_service_code = UNSET_VALUE
@@ -20,6 +25,7 @@ module VagrantPlugins
       end
 
       def finalize!
+        @endpoint = nil if @endpoint == UNSET_VALUE
         @access_key = ENV['IIJAPI_ACCESS_KEY'] if @access_key == UNSET_VALUE
         @secret_key = ENV['IIJAPI_SECRET_KEY'] if @secret_key == UNSET_VALUE
 
@@ -27,7 +33,9 @@ module VagrantPlugins
         @os = 'CentOS6_64_U' if @os == UNSET_VALUE
       end
 
-      def validate
+      def validate(machine)
+p [machine, machine.id]
+p [@gp_service_code, @gc_service_code]
         errors = _detected_errors
 
         unless @access_key
