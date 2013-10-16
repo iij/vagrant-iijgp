@@ -1,0 +1,9 @@
+# -*- mode: ruby; coding: utf-8 -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.provider :iijgp do |iijgp|
+    iijgp.virtual_machine_type = "V10"
+    iijgp.os = "CentOS6_64_U"
+  end
+end
