@@ -8,14 +8,13 @@ module VagrantPlugins
         end
 
         def call(env)
-          config = env[:machine].provider_config
-          label = config.label
-          gp = config.gp_service_code
+          gp = env[:machine].provider_config.gp_service_code
           gc = env[:machine].id
 
           vm = env[:iijapi].gp(gp).gc(gc)
+          label = env[:machine].provider_config.label || env[:machine].name.to_s || Time.now.strftime('%F %T')
 
-          @logger.info("Setting the label of the VM: #{label}")
+          @logger.info("Setting the label of the VM [#{gp}/#{gc}]: #{label}")
           vm.label = label
 
           @app.call(env)

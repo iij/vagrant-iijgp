@@ -22,6 +22,7 @@ module VagrantPlugins
         @gc_service_code = UNSET_VALUE
         @virtual_machine_type = UNSET_VALUE
         @os = UNSET_VALUE
+        @label = UNSET_VALUE
       end
 
       def finalize!
@@ -31,6 +32,7 @@ module VagrantPlugins
 
         @virtual_machine_type = 'V10' if @virtual_machine_type == UNSET_VALUE
         @os = 'CentOS6_64_U' if @os == UNSET_VALUE
+        @label = nil if @label == UNSET_VALUE
       end
 
       def validate(machine)
