@@ -2,6 +2,8 @@ en:
   vagrant_iijgp:
     wait_for_start: |-
       Waiting for start...
+    vm_already_running: |-
+      Virtual Machine already running.
     config:
       access_key_is_required: |-
         access_key is required

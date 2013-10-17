@@ -119,6 +119,7 @@ module VagrantPlugins
       autoload :CheckRunning, action_root.join("check_running")
       autoload :IsCreated, action_root.join("is_created")
       autoload :IsStopped, action_root.join("is_stopped")
+      autoload :MessageAlreadyRunning, action_root.join("message_already_running")
       autoload :PrepareIIJAPI, action_root.join("prepare_iijapi")
       autoload :ReadSSHInfo, action_root.join("read_ssh_info")
       autoload :ReadState, action_root.join("read_state")
