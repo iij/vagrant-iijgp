@@ -38,6 +38,21 @@ module VagrantPlugins
       end
 
       def self.action_halt
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use ConfigValidate
+          b.use PrepareIIJAPI
+          b.use Call, IsCreated do |env1, b1|
+            if env1[:result]
+              b1.use Call, IsStopped do |env2, b2|
+                if !env2[:result]
+                  b2.use StopVirtualMachine
+                end
+              end
+            else
+              b1.use MessageNotCreated
+            end
+          end
+        end
       end
 
       def self.action_provision
@@ -120,10 +135,12 @@ module VagrantPlugins
       autoload :IsCreated, action_root.join("is_created")
       autoload :IsStopped, action_root.join("is_stopped")
       autoload :MessageAlreadyRunning, action_root.join("message_already_running")
+      autoload :MessageNotCreated, action_root.join("message_not_created")
       autoload :PrepareIIJAPI, action_root.join("prepare_iijapi")
       autoload :ReadSSHInfo, action_root.join("read_ssh_info")
       autoload :ReadState, action_root.join("read_state")
       autoload :SetLabel, action_root.join("set_label")
+      autoload :StopVirtualMachine, action_root.join("stop_virtual_machine")
 
     end
   end
