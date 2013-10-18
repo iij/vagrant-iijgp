@@ -39,6 +39,8 @@ module VagrantPlugins
             hostpath = hostpath + '/' if hostpath !~ /\/$/
             guestpath = guestpath + '/' if guestpath !~ /\/$/
 
+            @env[:machine].communicate.execute(%Q[mkdir -p "#{guestpath}" && chown "#{ssh_info[:username]}" "#{guestpath}"])
+
             ssh_command = %Q[ssh -p #{ssh_info[:port]} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o IdentitiesOnly=yes -i "#{ssh_info[:private_key_path]}"]
             command = %w[rsync -avz --exclude .vagrant/ -e] +
               [ssh_command, hostpath, "#{ssh_info[:username]}@#{ssh_info[:host]}:#{guestpath}"]
