@@ -112,18 +112,17 @@ module VagrantPlugins
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
           b.use PrepareIIJAPI
-          b.use Call, IsCreated do |env1, b1|
-            if env1[:result]
-              b1.use Call, IsStopped do |env2, b2|
-                if env2[:result]
-                  b2.use action_start
-                else
-                  b2.use MessageAlreadyRunning
-                end
-              end
-            else
+          b.use Call, ReadState do |env1, b1|
+            case env1[:machine_state]
+            when :not_created, :initialized
               b1.use AddVirtualMachine
               b1.use action_start
+            when :stopped
+              b1.use action_start
+            when :running
+              b1.use MessageAlreadyRunning
+            else
+              b1.use MessageInvalidStatus
             end
           end
         end
@@ -136,6 +135,7 @@ module VagrantPlugins
       autoload :IsCreated, action_root.join("is_created")
       autoload :IsStopped, action_root.join("is_stopped")
       autoload :MessageAlreadyRunning, action_root.join("message_already_running")
+      autoload :MessageInvalidStatus, action_root.join("message_invalid_status")
       autoload :MessageNotCreated, action_root.join("message_not_created")
       autoload :MessageWillNotDestroy, action_root.join("message_will_not_destroy")
       autoload :PrepareIIJAPI, action_root.join("prepare_iijapi")

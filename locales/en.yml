@@ -8,6 +8,9 @@ en:
       Virtual Machine already running.
     vm_not_created: |-
       Virtual Machine is not created.
+    invalid_status: |-
+      '%{action}' action is not allowed in the current status.
+
     config:
       access_key_is_required: |-
         access_key is required
