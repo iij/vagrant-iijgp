@@ -60,7 +60,7 @@ module VagrantPlugins
           b.use ConfigValidate
           b.use PrepareIIJAPI
           b.use Call, ReadState do |env1, b1|
-            case env[:machine_state]
+            case env1[:machine_state]
             when :running
               b1.use Provision
               b1.use SyncFolders
