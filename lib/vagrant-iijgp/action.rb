@@ -132,7 +132,7 @@ module VagrantPlugins
       action_root = Pathname.new(File.expand_path("../action", __FILE__))
       autoload :Boot, action_root.join("boot")
       autoload :CheckRunning, action_root.join("check_running")
-      autoload :Destroy, action_boot.join("destroy")
+      autoload :Destroy, action_root.join("destroy")
       autoload :IsCreated, action_root.join("is_created")
       autoload :IsStopped, action_root.join("is_stopped")
       autoload :MessageAlreadyRunning, action_root.join("message_already_running")
