@@ -115,7 +115,7 @@ module VagrantPlugins
           b.use Call, ReadState do |env1, b1|
             case env1[:machine_state]
             when :not_created, :initialized
-              b1.use AddVirtualMachine
+              b1.use CreateVM
               b1.use action_start
             when :stopped
               b1.use action_start
@@ -131,6 +131,7 @@ module VagrantPlugins
       action_root = Pathname.new(File.expand_path("../action", __FILE__))
       autoload :Boot, action_root.join("boot")
       autoload :CheckRunning, action_root.join("check_running")
+      autoload :CreateVM, action_root.join("create_vm")
       autoload :Destroy, action_root.join("destroy")
       autoload :IsCreated, action_root.join("is_created")
       autoload :IsStopped, action_root.join("is_stopped")

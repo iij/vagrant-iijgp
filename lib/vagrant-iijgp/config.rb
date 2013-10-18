@@ -12,6 +12,8 @@ module VagrantPlugins
       attr_accessor :virtual_machine_type
       attr_accessor :os
 
+      attr_accessor :ssh_public_key
+
       attr_accessor :label
 
       def initialize
@@ -22,6 +24,7 @@ module VagrantPlugins
         @gc_service_code = UNSET_VALUE
         @virtual_machine_type = UNSET_VALUE
         @os = UNSET_VALUE
+        @ssh_public_key = UNSET_VALUE
         @label = UNSET_VALUE
       end
 
@@ -32,6 +35,7 @@ module VagrantPlugins
 
         @virtual_machine_type = 'V10' if @virtual_machine_type == UNSET_VALUE
         @os = 'CentOS6_64_U' if @os == UNSET_VALUE
+        @ssh_public_key = nil if @ssh_public_key == UNSET_VALUE
         @label = nil if @label == UNSET_VALUE
       end
 
@@ -46,6 +50,10 @@ p [@gp_service_code, @gc_service_code]
 
         unless @secret_key
           errors << I18n.t("vagrant_iijgp.config.secret_key_is_required")
+        end
+
+        unless @ssh_public_key
+          errors << I18n.t("vagrant_iijgp.config.ssh_public_key_is_required")
         end
 
         if @gp_service_code.nil? or @gp_service_code == UNSET_VALUE

@@ -1,5 +1,7 @@
 en:
   vagrant_iijgp:
+    wait_for_configured: |-
+      Waiting for the import of the root SSH key to complete.
     wait_for_start: |-
       Waiting for start...
     wait_for_stop: |-
@@ -10,6 +12,8 @@ en:
       Virtual Machine is not created.
     invalid_status: |-
       '%{action}' action is not allowed in the current status.
+    import_root_ssh_public_key: |-
+      Importing your SSH public key into the Virtual Machine.
 
     config:
       access_key_is_required: |-
@@ -18,6 +22,8 @@ en:
         secret_key is required
       gp_service_code_is_required: |-
         gp_service_code is required
+      ssh_public_key_is_required: |-
+        ssh_public_key is required
 
     state:
       running:
