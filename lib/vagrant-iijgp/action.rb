@@ -132,6 +132,7 @@ module VagrantPlugins
             when :not_created, :initialized
               b1.use CreateVM
               b1.use action_start
+              b1.use VagrantTweaks
             when :stopped
               b1.use action_start
             when :running
@@ -160,6 +161,7 @@ module VagrantPlugins
       autoload :SetLabel, action_root.join("set_label")
       autoload :StopVirtualMachine, action_root.join("stop_virtual_machine")
       autoload :SyncFolders, action_root.join("sync_folders")
+      autoload :VagrantTweaks, action_root.join("vagrant_tweaks")
 
     end
   end

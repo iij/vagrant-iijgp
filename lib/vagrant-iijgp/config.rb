@@ -16,6 +16,8 @@ module VagrantPlugins
 
       attr_accessor :label
 
+      attr_accessor :vagrant_tweaks
+
       def initialize
         @endpoint = UNSET_VALUE
         @access_key = UNSET_VALUE
@@ -26,6 +28,7 @@ module VagrantPlugins
         @os = UNSET_VALUE
         @ssh_public_key = UNSET_VALUE
         @label = UNSET_VALUE
+        @vagrant_tweaks = UNSET_VALUE
       end
 
       def finalize!
@@ -37,6 +40,7 @@ module VagrantPlugins
         @os = 'CentOS6_64_U' if @os == UNSET_VALUE
         @ssh_public_key = nil if @ssh_public_key == UNSET_VALUE
         @label = nil if @label == UNSET_VALUE
+        @vagrant_tweaks = :allow_root_notty_sudo if @vagrant_tweaks == UNSET_VALUE
       end
 
       def validate(machine)

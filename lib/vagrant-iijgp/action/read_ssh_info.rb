@@ -9,6 +9,7 @@ module VagrantPlugins
 
         def call(env)
           env[:machine_ssh_info] = read_ssh_info(env[:iijapi], env[:machine])
+
           @app.call(env)
         end
 
