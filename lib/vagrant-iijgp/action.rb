@@ -8,10 +8,10 @@ module VagrantPlugins
       def self.action_boot
         Vagrant::Action::Builder.new.tap do |b|
           b.use Provision
+          b.use SyncFolders
           b.use SetLabel
           b.use Boot
           b.use WaitForCommunicator, [:starting, :running]
-          # b.use SyncFolders
         end
       end
 
