@@ -10,14 +10,15 @@ module VagrantPlugins
         def call(env)
           @env = env
 
-          env[:ui].info I18n.t("vagrant.actions.vm.halt.graceful")
+          force = env[:force_halt] if env.has_key?(:force_halt)
+          env[:ui].info I18n.t("vagrant.actions.vm.halt.#{force ? "force" : "graceful"}")
 
           config = env[:machine].provider_config
           gp = config.gp_service_code
           gc = env[:machine].id
 
           vm = env[:iijapi].gp(gp).gc(gc)
-          vm.stop
+          vm.stop(force)
 
           env[:ui].info I18n.t("vagrant_iijgp.wait_for_stop")
           vm.wait_for_stop { env[:ui].info "-- current_status: #{vm.status}" }
