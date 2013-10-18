@@ -56,6 +56,19 @@ module VagrantPlugins
       end
 
       def self.action_provision
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use ConfigValidate
+          b.use PrepareIIJAPI
+          b.use Call, IsCreated do |env1, b1|
+            if !env1[:result]
+              b1.use MessageNotCreated
+              next
+            end
+
+            b1.use Provision
+            b1.use SyncFolders
+          end
+        end
       end
 
       def self.action_reload
@@ -144,6 +157,7 @@ module VagrantPlugins
       autoload :ReadState, action_root.join("read_state")
       autoload :SetLabel, action_root.join("set_label")
       autoload :StopVirtualMachine, action_root.join("stop_virtual_machine")
+      autoload :SyncFolders, action_root.join("sync_folders")
 
     end
   end

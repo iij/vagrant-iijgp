@@ -14,6 +14,10 @@ en:
       '%{action}' action is not allowed in the current status.
     import_root_ssh_public_key: |-
       Importing your SSH public key into the Virtual Machine.
+    install_rsync: |-
+      Installing rsync on the Virtual Machine.
+    rsync_folder: |-
+      Rsyncing folder: %{hostpath} => %{guestpath}
 
     config:
       access_key_is_required: |-
