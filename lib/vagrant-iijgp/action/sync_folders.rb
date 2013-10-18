@@ -47,7 +47,7 @@ module VagrantPlugins
             @env[:ui].info I18n.t("vagrant_iijgp.rsync_folder", :hostpath => hostpath, :guestpath => guestpath)
             ret = Vagrant::Util::Subprocess.execute(*command)
             if ret.exit_code != 0
-              # raise Errors::RsyncError, :guestpath => guestpath, :hostpath => hostpath, :stderr => ret.stderr
+              raise Errors::RsyncError, :guestpath => guestpath, :hostpath => hostpath, :stderr => ret.stderr
             end
           end
         end

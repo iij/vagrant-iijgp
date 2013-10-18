@@ -60,3 +60,7 @@ en:
         long: |-
           The virtual machine is initialized.
 
+    errors:
+      rsync_error: |-
+        An error occured while attempting to rsync.
+
