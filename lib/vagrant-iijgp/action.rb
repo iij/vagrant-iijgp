@@ -59,14 +59,16 @@ module VagrantPlugins
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
           b.use PrepareIIJAPI
-          b.use Call, IsCreated do |env1, b1|
-            if !env1[:result]
+          b.use Call, ReadState do |env1, b1|
+            case env[:machine_state]
+            when :running
+              b1.use Provision
+              b1.use SyncFolders
+            when :not_created, :initialized
               b1.use MessageNotCreated
-              next
+            else
+              b1.use MessageInvalidStatus
             end
-
-            b1.use Provision
-            b1.use SyncFolders
           end
         end
       end
