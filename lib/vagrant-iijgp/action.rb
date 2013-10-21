@@ -64,6 +64,7 @@ module VagrantPlugins
             when :running
               b1.use Provision
               b1.use SyncFolders
+              b1.use VagrantTweaks
             when :not_created, :initialized
               b1.use MessageNotCreated
             else
