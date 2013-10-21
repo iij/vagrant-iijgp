@@ -13,10 +13,10 @@ module VagrantPlugins
           gp = config.gp_service_code
           gc = env[:machine].id
 
-          gc = env[:iijapi].gp(gp).gc(gc)
+          vm = env[:iijapi].gp(gp).gc(gc)
 
           @logger.info("Setting the label of the VM: #{label}")
-          gc.label = label
+          vm.label = label
 
           @app.call(env)
         end
