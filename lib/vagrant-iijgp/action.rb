@@ -75,6 +75,19 @@ module VagrantPlugins
       end
 
       def self.action_reload
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use ConfigValidate
+          b.use PrepareIIJAPI
+          b.use Call, IsCreated do |env1, b1|
+            if !env1[:result]
+              b1.use MessageNotCreated
+              next
+            end
+
+            b1.use action_halt
+            b1.use action_up
+          end
+        end
       end
 
       def self.action_read_ssh_info
