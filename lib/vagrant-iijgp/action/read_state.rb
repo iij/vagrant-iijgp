@@ -18,8 +18,6 @@ module VagrantPlugins
 
         def read_state(env)
           machine = env[:machine]
-          @logger.info(machine.id)
-
           return :not_created if machine.id.nil?
 
           vm = env[:iijapi].gp(machine.provider_config.gp_service_code).gc(machine.id)

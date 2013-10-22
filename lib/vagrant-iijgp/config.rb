@@ -44,8 +44,6 @@ module VagrantPlugins
       end
 
       def validate(machine)
-p [machine, machine.id]
-p [@gp_service_code, @gc_service_code]
         errors = _detected_errors
 
         unless @access_key
