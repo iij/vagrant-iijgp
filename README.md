@@ -1,6 +1,6 @@
 # Vagrant IIJ GIO Provider
 
-This is a [Vagrant](http://www.vagrantup.com) 1.2+ plugin that adds a IIJGP provider to Vagrant,
+This is a [Vagrant](http://www.vagrantup.com) 1.3+ plugin that adds a IIJGP provider to Vagrant,
 allowing Vagrant to control and provision VMs in IIJ GIO Hosting package service.
 
 ## Features
