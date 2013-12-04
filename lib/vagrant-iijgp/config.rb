@@ -18,6 +18,9 @@ module VagrantPlugins
 
       attr_accessor :vagrant_tweaks
 
+      attr_accessor :api_max_retry_count
+      attr_accessor :api_retry_wait
+
       def initialize
         @endpoint = UNSET_VALUE
         @access_key = UNSET_VALUE
@@ -29,6 +32,8 @@ module VagrantPlugins
         @ssh_public_key = UNSET_VALUE
         @label = UNSET_VALUE
         @vagrant_tweaks = UNSET_VALUE
+        @api_max_retry_count = UNSET_VALUE
+        @api_retry_wait = UNSET_VALUE
       end
 
       def finalize!
@@ -43,6 +48,8 @@ module VagrantPlugins
         @ssh_public_key = nil if @ssh_public_key == UNSET_VALUE
         @label = nil if @label == UNSET_VALUE
         @vagrant_tweaks = :allow_root_notty_sudo if @vagrant_tweaks == UNSET_VALUE
+        @api_max_retry_count = 10 if @api_max_retry_count == UNSET_VALUE
+        @api_retry_wait = 60 if @api_retry_wait == UNSET_VALUE
       end
 
       def validate(machine)

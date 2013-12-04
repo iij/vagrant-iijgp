@@ -29,7 +29,21 @@ module VagrantPlugins
           gc = env[:machine].id
           vm = env[:iijapi].gp(gp).gc(gc)
 
-          vm.wait_while(proc { vm.contract_status! == "InPreparation" }) { env[:ui].info "-- contract status: #{vm.contract_status}" }
+          retry_left = config.api_max_retry_count
+          begin
+            vm.wait_while(proc { vm.contract_status! == "InPreparation" }) do
+              env[:ui].info "-- contract status: #{vm.contract_status}"
+            end
+          rescue IIJAPI::Core::Error::APIError => e
+            env[:ui].warn "Failed to fetch the status of contract: #{e.inspect}"
+            retry_left -= 1
+            if retry_left > 0
+              sleep config.api_retry_wait
+              retry
+            else
+              raise
+            end
+          end
 
           env[:ui].info I18n.t("vagrant_iijgp.import_root_ssh_public_key")
           vm.import_ssh_public_key(config.ssh_public_key)
