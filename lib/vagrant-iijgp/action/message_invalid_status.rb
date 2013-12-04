@@ -7,7 +7,7 @@ module VagrantPlugins
         end
 
         def call(env)
-          env[:ui].info I18n.t("vagrant_iijgp.invalid_status", :name => env[:machine].name)
+          env[:ui].info I18n.t("vagrant_iijgp.invalid_status", :name => env[:machine].name, :state => env[:machine_state])
           @app.call(env)
         end
       end

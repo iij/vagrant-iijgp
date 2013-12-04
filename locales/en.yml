@@ -11,7 +11,7 @@ en:
     vm_not_created: |-
       Virtual Machine is not created.
     invalid_status: |-
-      The action is not allowed in the current status.
+      The action is not allowed in the current status (%{state}).
     import_root_ssh_public_key: |-
       Importing your SSH public key into the Virtual Machine.
     install_rsync: |-
@@ -63,8 +63,8 @@ en:
     errors:
       rsync_error: |-
         An error occured while attempting to rsync.
-      mismatch_service_code:
-        There is no match between the service code which is stored in vagrant
-        and the service code which is specified in the configuration file.
+      mismatch_service_code: |-
+        There is no match between the service code which is stored in vagrant (%{machine_id})
+        and the service code which is specified in the configuration file (%{provider_config}).
         If you changed the service code in the setting file after `vagrant up`,
         you should wipe out the setting in `.vagrant/machines/<name>/id`.
