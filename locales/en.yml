@@ -63,4 +63,8 @@ en:
     errors:
       rsync_error: |-
         An error occured while attempting to rsync.
-
+      mismatch_service_code:
+        There is no match between the service code which is stored in vagrant
+        and the service code which is specified in the configuration file.
+        If you changed the service code in the setting file after `vagrant up`,
+        you should wipe out the setting in `.vagrant/machines/<name>/id`.

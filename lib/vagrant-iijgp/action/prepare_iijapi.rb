@@ -12,8 +12,14 @@ module VagrantPlugins
         def call(env)
           config = env[:machine].provider_config
 
-          if env[:machine].id.nil?
-            env[:machine].id = config.gc_service_code
+          # use the existing gc contract.
+          if config.gc_service_code
+            if env[:machine].id.nil?
+              # first time `vagrant up`
+              env[:machine].id = config.gc_service_code
+            elsif config.gc_service_code != env[:machine].id
+              raise Errors::MismatchServiceCode, :provider_config => config.gc_service_code, :machine_id => env[:machine].id
+            end
           end
 
           opts = {

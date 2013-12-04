@@ -10,6 +10,10 @@ module VagrantPlugins
       class RsyncError < VagrantIijGpError
         error_key(:rsync_error)
       end
+
+      class MismatchServiceCode < VagrantIijGpError
+        error_key(:mismatch_service_code)
+      end
     end
   end
 end
