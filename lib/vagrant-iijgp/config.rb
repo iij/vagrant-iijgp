@@ -36,6 +36,8 @@ module VagrantPlugins
         @access_key = ENV['IIJAPI_ACCESS_KEY'] if @access_key == UNSET_VALUE
         @secret_key = ENV['IIJAPI_SECRET_KEY'] if @secret_key == UNSET_VALUE
 
+        @gc_service_code = nil if @gc_service_code == UNSET_VALUE
+
         @virtual_machine_type = 'V10' if @virtual_machine_type == UNSET_VALUE
         @os = 'CentOS6_64_U' if @os == UNSET_VALUE
         @ssh_public_key = nil if @ssh_public_key == UNSET_VALUE
