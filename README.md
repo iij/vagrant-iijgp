@@ -35,7 +35,7 @@ and specify all the details manually within a `config.vm.provider` block.
 So first, add the dummy box using any name you want:
 
 ~~~~ {.shell}
-$ vagrant box add dummy https://...
+$ vagrant box add dummy https://github.com/iij/vagrant-iijgp/raw/master/dummy.box
 ....
 ~~~~
 
