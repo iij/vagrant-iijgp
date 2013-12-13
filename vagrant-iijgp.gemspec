@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["taka@himura.jp"]
   spec.description   = %q{Vagrant plugin for IIJ GIO Hosting Package service}
   spec.summary       = %q{Vagrant plugin for IIJ GIO Hosting Package service}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/iij/vagrant-iijgp/"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
