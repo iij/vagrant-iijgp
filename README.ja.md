@@ -35,7 +35,7 @@ $ vagrant up --provider=iijgp
 まず、はじめにダミーの box を任意の名前で追加します:
 
 ~~~~ {.shell}
-$ vagrant box add dummy https://...
+$ vagrant box add dummy https://github.com/iij/vagrant-iijgp/raw/master/dummy.box
 ....
 ~~~~
 
