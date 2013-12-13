@@ -34,7 +34,7 @@ module VagrantPlugins
             vm.wait_while(proc { vm.contract_status! == "InPreparation" }) do
               env[:ui].info "-- contract status: #{vm.contract_status}"
             end
-          rescue IIJAPI::Core::Error::APIError => e
+          rescue IIJ::Sakagura::Core::Error::APIError => e
             env[:ui].warn "Failed to fetch the status of contract: #{e.inspect}"
             retry_left -= 1
             if retry_left > 0

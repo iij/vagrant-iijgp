@@ -1,4 +1,4 @@
-require 'iijapi'
+require 'iij/sakagura'
 
 module VagrantPlugins
   module ProviderIijGp
@@ -28,7 +28,7 @@ module VagrantPlugins
           }
           opts[:endpoint] = config.endpoint if config.endpoint
 
-          env[:iijapi] = IIJAPI::GP::Client.new(opts)
+          env[:iijapi] = IIJ::Sakagura::GP::Client.new(opts)
 
           @app.call(env)
         end
