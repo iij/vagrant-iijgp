@@ -77,6 +77,16 @@ export VAGRANT_DEFAULT_PROVIDER=iijgp
 ~~~~
 then you can simply run `vagrant up` with iijgp provider.
 
+## Commands
+
+-   `gc-list`:
+    List all VMs known in Vagrantfile. It also displays their IP addresses, VM Type, and Labels.
+
+    ~~~~ {.shell}
+    $ vagrant gc-list
+    gpXXXXXXXX	gcYYYYYYYY	V240	CentOS6_64_U	L	XXX.XXX.XX.XX	XX.XXX.XX.XX	label
+    ~~~~
+
 ## Box Format
 
 Every provider in Vagrant must introduce a custom box format.
