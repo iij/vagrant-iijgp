@@ -90,6 +90,15 @@ module VagrantPlugins
         end
       end
 
+      def self.action_gc_list
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use ConfigValidate
+          b.use PrepareIIJAPI
+          b.use DescribeVirtualMachine
+          b.use GcList
+        end
+      end
+
       def self.action_read_ssh_info
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
@@ -170,6 +179,8 @@ module VagrantPlugins
       autoload :MessageNotCreated, action_root.join("message_not_created")
       autoload :MessageWillNotDestroy, action_root.join("message_will_not_destroy")
       autoload :PrepareIIJAPI, action_root.join("prepare_iijapi")
+      autoload :DescribeVirtualMachine, action_root.join("describe_virtual_machine")
+      autoload :GcList, action_root.join("gc_list")
       autoload :ReadSSHInfo, action_root.join("read_ssh_info")
       autoload :ReadState, action_root.join("read_state")
       autoload :SetLabel, action_root.join("set_label")

@@ -23,6 +23,11 @@ module VagrantPlugins
         Provider
       end
 
+      command(:'gc-list') do
+        require_relative "command"
+        GcListCommand
+      end
+
       def self.setup_logging
         require "log4r"
 
