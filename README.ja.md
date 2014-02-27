@@ -75,6 +75,17 @@ SSH と provisioning が行なわれます。
 export VAGRANT_DEFAULT_PROVIDER=iijgp
 ~~~~
 
+## Commands
+
+-   `gc-list`:
+    Vagrantfile 内で設定されている仮想サーバの一覧を、IP アドレスや仮想サーバの品目などとあわせて表示します。
+
+    ~~~~ {.shell}
+    $ vagrant gc-list
+    gpXXXXXXXX	gcYYYYYYYY	V240	CentOS6_64_U	L	XXX.XXX.XX.XX	XX.XXX.XX.XX	label
+    ~~~~
+
+
 ## Box Format
 
 全ての Vagrant provider は、それ用にカスタムの box を導入する必要があります。
